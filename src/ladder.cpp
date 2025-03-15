@@ -3,7 +3,7 @@
 #include <fstream>
 #include <queue>
 #include <vector>
-#include <unordered_set>
+#include <unorderedsets>
 #include <set>
 #include <string>
 #include <algorithm>
@@ -57,32 +57,38 @@ bool is_adjacent(const string& word1, const string& word2) {
 }
 
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
-    if (word_list.find(end_word) == word_list.end()) return {};
-
+    // Check if the start and end words are the same
+    if (begin_word == end_word) {
+        return {begin_word};  // Return a ladder with just the start/end word
+    }
 
     queue<vector<string>> ladder_queue;
     unordered_set<string> visited;
 
+    // Initialize the queue with the begin_word
     vector<string> begin_ladder = {begin_word};  
     ladder_queue.push(begin_ladder);
-    visited.insert(begin_word);    visited.insert(begin_word);
+    visited.insert(begin_word); 
 
-    // bfs loop
+    // BFS loop
     while (!ladder_queue.empty()) {
         vector<string> ladder = ladder_queue.front();
         ladder_queue.pop();
 
         string last_word = ladder.back();
 
+        // Iterate through the word list to find adjacent words
         for (const string& word : word_list) {
             if (is_adjacent(last_word, word) && visited.find(word) == visited.end()) {
-                vector<string> new_ladder = ladder; // copy current ladder
-                new_ladder.push_back(word); // add word to the list
+                vector<string> new_ladder = ladder; // Copy the current ladder
+                new_ladder.push_back(word); // Add the adjacent word to the ladder
 
+                // If we found the end word, return the current ladder
                 if (word == end_word) {
                     return new_ladder;
                 }
 
+                // Otherwise, continue BFS
                 ladder_queue.push(new_ladder); 
                 visited.insert(word);
             }
