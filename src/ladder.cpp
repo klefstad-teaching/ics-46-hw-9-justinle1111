@@ -71,6 +71,8 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     vector<string> begin_ladder = {begin_word};  
     ladder_queue.push(begin_ladder);
     visited.insert(begin_word); 
+    visited.insert(begin_word);
+
 
     // BFS loop
     while (!ladder_queue.empty()) {
