@@ -61,7 +61,6 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     if (begin_word == end_word) {
         return {begin_word};  // Return a ladder with just the start/end word
     }
-    if (word_list.find(end_word) == word_list.end()) return {};
 
     queue<vector<string>> ladder_queue;
     unordered_set<string> visited;
@@ -81,6 +80,9 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         // Iterate through the word list to find adjacent words
         for (const string& word : word_list) {
             if (is_adjacent(last_word, word) && visited.find(word) == visited.end()) {
+                // Prevent processing the begin_word again in the BFS
+                if (word == begin_word) continue;
+
                 vector<string> new_ladder = ladder; // Copy the current ladder
                 new_ladder.push_back(word); // Add the adjacent word to the ladder
 
