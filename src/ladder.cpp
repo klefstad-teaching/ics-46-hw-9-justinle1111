@@ -56,6 +56,10 @@ bool is_adjacent(const string& word1, const string& word2) {
 }
 
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
+    if (begin_word == end_word) {
+        return {begin_word};
+    }
+
     queue<vector<string>> ladder_queue;
     ladder_queue.push({begin_word});
     
@@ -101,10 +105,15 @@ void print_word_ladder(const vector<string>& ladder) {
         cout << "No word ladder found.\n";
         return;
     }
-    for (const string& word : ladder) {
-        cout << word << " -> ";
+
+    cout << "Word ladder found: ";
+    for (size_t i = 0; i < ladder.size(); ++i) {
+        cout << ladder[i];
+        if (i != ladder.size() - 1) {  // Avoid printing a space after the last word
+            cout << " ";
+        }
     }
-    cout << "END\n";
+    cout << " \n";  // Ensure there is a space before the newline
 }
 
 
