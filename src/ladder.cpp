@@ -61,6 +61,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     if (begin_word == end_word) {
         return {begin_word};  // Return a ladder with just the start/end word
     }
+    if (word_list.find(end_word) == word_list.end()) return {};
 
     queue<vector<string>> ladder_queue;
     unordered_set<string> visited;
