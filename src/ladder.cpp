@@ -1,8 +1,11 @@
 #include "ladder.h"
+#include <iostream>
+#include <fstream>
 #include <queue>
-#include <unordered_set>
 #include <vector>
+#include <set>
 #include <string>
+#include <algorithm>
 
 void error(string word1, string word2, string msg) {
     cerr << "Error: " << msg << " (" << word1 << ", " << word2 << ")\n";
@@ -51,12 +54,12 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 bool is_adjacent(const string& word1, const string& word2) {
     return edit_distance_within(word1, word2, 1);
 }
-vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {}
 
+vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
     queue<vector<string>> ladder_queue;
     ladder_queue.push({begin_word});
     
-    unordered_set<string> visited;
+    set<string> visited;
     visited.insert(begin_word);
     
     while (!ladder_queue.empty()) {
