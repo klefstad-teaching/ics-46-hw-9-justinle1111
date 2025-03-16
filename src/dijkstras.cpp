@@ -50,10 +50,7 @@ void print_path(const vector<int>& v, int total) {
 
     // Print the path with a space after each number, including the last one
     for (size_t i = 0; i < v.size(); ++i) {
-        cout << v[i];
-        if (i < v.size() - 1) {
-            cout << " ";
-        }
+        cout << v[i] << " ";
     }
 
     // Print the total cost
