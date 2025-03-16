@@ -42,18 +42,21 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
     return path;
 }
 
-void print_path(const vector<int>& path, const vector<int>& distances, const vector<int>& previous) {
-    if (path.empty()) {
+void print_path(const vector<int>& v, int total) {
+    if (v.empty()) {
         cout << "No path found" << endl;
         return;
     }
 
-    int total_cost = 0;
-    for (size_t i = 0; i < path.size(); ++i) {
-        cout << path[i];
-        if (i < path.size() - 1) cout << " ";
-        total_cost += (i == 0) ? 0 : distances[path[i]] - distances[path[i - 1]];
-        
-        cout << " (Total Cost: " << total_cost << ")" << endl;
+    int total_cost = total; // Use the total passed in the parameter
+
+    // Print the path in order
+    for (size_t i = 0; i < v.size(); ++i) {
+        cout << v[i];
+        if (i < v.size() - 1) {
+            cout << " ";
+        }
     }
+
+    cout << " (Total Cost: " << total_cost << ")" << endl;
 }
