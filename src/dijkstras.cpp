@@ -43,11 +43,6 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 }
 
 void print_path(const vector<int>& v, int total) {
-    if (v.empty()) {
-        cout << "\nTotal cost is 0" << endl;
-        return;
-    }
-
     // Print the path with a space after each number, including the last one
     for (size_t i = 0; i < v.size(); ++i) {
         cout << v[i] << " ";
