@@ -48,15 +48,15 @@ void print_path(const vector<int>& v, int total) {
         return;
     }
 
-    int total_cost = total; // Use the total passed in the parameter
-
-    // Print the path in order
+    // Print the path
     for (size_t i = 0; i < v.size(); ++i) {
         cout << v[i];
         if (i < v.size() - 1) {
             cout << " ";
         }
     }
-
-    cout << " (Total Cost: " << total_cost << ")" << endl;
+    
+    // Print the total cost in a separate line
+    cout << "\nTotal cost is " << total << endl;
 }
+
